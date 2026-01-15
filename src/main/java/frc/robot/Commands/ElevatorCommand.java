@@ -1,10 +1,14 @@
 package frc.robot.Commands;
 
-import java.util.function.DoubleSupplier;
+
+import static edu.wpi.first.units.Units.Volts;
+
+import java.lang.invoke.VolatileCallSite;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.ElevatorFeedforward;
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.units.measure.Voltage;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants.ElevatorConstants;
@@ -25,17 +29,19 @@ public class ElevatorCommand extends Command{
         
     }
     public void moveToPosition(double FPosition) {
+        // extremely stupid way to clamp volts
         double PIDVolts = PIDController.calculate(subsystem.getEncoderPosition(), FPosition);
-        double FFVolts = FFController.calculateWithVelocities(subsystem.getEncoderVelocity(), 0);
-        subsystem.setMotorSpeed(
-            Math.max(Math.min(PIDVolts+FFVolts, 
-                ElevatorConstants.kMaxMotorVoltage), 
-                -ElevatorConstants.kMaxMotorVoltage));
-        
+        double FFVolts =  FFController.calculateWithVelocities(subsystem.getEncoderVelocity(), 0);
+        double combinedVolts = PIDVolts + FFVolts;
+        subsystem.setVoltage(
+            Volts.of(MathUtil.clamp(combinedVolts, 
+                -ElevatorConstants.kMaxMotorVoltage, 
+                ElevatorConstants.kMaxMotorVoltage)));
             SmartDashboard.putNumber("Volts", 
-            Math.max(Math.min(PIDVolts+FFVolts, 
-                ElevatorConstants.kMaxMotorVoltage), 
-                -ElevatorConstants.kMaxMotorVoltage));
+            
+            MathUtil.clamp(combinedVolts, 
+                -ElevatorConstants.kMaxMotorVoltage, 
+                ElevatorConstants.kMaxMotorVoltage));
     }
 
     @Override
