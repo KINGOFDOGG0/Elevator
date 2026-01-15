@@ -18,7 +18,6 @@ public class ControlElevatorCommand extends Command{
 
     @Override
     public void initialize() {
-    subsystem.autoElevatorSetPosition(0);
     subsystem.resetEncoders();
     }
 

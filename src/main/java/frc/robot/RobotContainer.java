@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.robot.Commands.ControlElevatorCommand;
 import frc.robot.Commands.ElevatorCommand;
-import frc.robot.Commands.RaiseElevatorCommand;
 import frc.robot.Constants.ElevatorConstants;
 import frc.robot.Subsystems.Elevator.ElevatorSubsystem;
 
@@ -38,13 +37,10 @@ public class RobotContainer {
     button_x.whileTrue(m_subsystem.getDynamicForward());
     button_y.whileTrue(m_subsystem.getDynamicReverse());
 
-
-
-
-
-
-
-    // new POVButton(m_Joystick, 0).onTrue(new ElevatorCommand(m_subsystem, ElevatorConstants.kFirstLevel));
+    new POVButton(m_Joystick, 0).onTrue(new ElevatorCommand(m_subsystem, ElevatorConstants.kFirstLevel));
+    new POVButton(m_Joystick, 90).onTrue(new ElevatorCommand(m_subsystem, ElevatorConstants.kSecondLevel));
+    new POVButton(m_Joystick, 180).onTrue(new ElevatorCommand(m_subsystem, ElevatorConstants.kThirdLevel));
+    new POVButton(m_Joystick, 270).onTrue(new ElevatorCommand(m_subsystem, ElevatorConstants.kFourthLevel));
 
   }
 
