@@ -24,14 +24,15 @@ public class ElevatorCommand extends Command{
         PIDController = new PIDController(0, 0, 0);
         
     }
-    public void moveToPosition(double Fposition) {
-        double PIDVolts = PIDController.calculate(subsystem.getEncoderPosition(), Fposition);
+    public void moveToPosition(double FPosition) {
+        double PIDVolts = PIDController.calculate(subsystem.getEncoderPosition(), FPosition);
         double FFVolts = FFController.calculateWithVelocities(subsystem.getEncoderVelocity(), 0);
         subsystem.setMotorSpeed(
             Math.max(Math.min(PIDVolts+FFVolts, 
                 ElevatorConstants.kMaxMotorVoltage), 
                 -ElevatorConstants.kMaxMotorVoltage));
-        SmartDashboard.putNumber("Volts", 
+        
+            SmartDashboard.putNumber("Volts", 
             Math.max(Math.min(PIDVolts+FFVolts, 
                 ElevatorConstants.kMaxMotorVoltage), 
                 -ElevatorConstants.kMaxMotorVoltage));
@@ -53,7 +54,7 @@ public class ElevatorCommand extends Command{
     }
     @Override
     public boolean isFinished() {
-        if(subsystem.getEncoderPosition() == position) {
+        if(subsystem.getEncoderPosition() == position || position > ElevatorConstants.kElevatorHeightLimit) {
             subsystem.setMotorSpeed(0);
             return true;
         }

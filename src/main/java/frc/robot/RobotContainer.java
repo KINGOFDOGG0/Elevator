@@ -41,7 +41,6 @@ public class RobotContainer {
     new POVButton(m_Joystick, 90).onTrue(new ElevatorCommand(m_subsystem, ElevatorConstants.kSecondLevel));
     new POVButton(m_Joystick, 180).onTrue(new ElevatorCommand(m_subsystem, ElevatorConstants.kThirdLevel));
     new POVButton(m_Joystick, 270).onTrue(new ElevatorCommand(m_subsystem, ElevatorConstants.kFourthLevel));
-
   }
 
 }

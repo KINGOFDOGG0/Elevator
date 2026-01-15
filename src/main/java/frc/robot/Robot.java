@@ -32,9 +32,7 @@ public class Robot extends TimedRobot {
   public void disabledExit() {}
 
   @Override
-  public void autonomousInit() {
-      // CommandScheduler.getInstance().schedule(m_robotContainer.raiseElevatorCommand);
-  }
+  public void autonomousInit() {}
 
   @Override
   public void autonomousPeriodic() {}
