@@ -6,35 +6,26 @@ import edu.wpi.first.math.util.Units;
 public class Constants {
     public static final class ElevatorConstants {
 
-        public static final int kElevatorMotorPort = 20;
-        public static final int kElevatorLimitSwitchPort = 9;
+        
 
-        public static final double kPulleyDiameterMeter = Units.inchesToMeters(1.504);
-        public static final double kElevatorMotorGearRatio = 0;
-        public static final double kBeltPullMeters = kElevatorMotorGearRatio * Math.PI * kPulleyDiameterMeter;
-        public static final double kElevatorEncoderRot2Meters = 3 * kBeltPullMeters;
-        public static final double kElevatorHeightLimit = 0.0;
+    public static final int kElevatorMotorPort = 0;
 
-        public static final SparkMaxConfig kElevatorMotorConfig = new SparkMaxConfig();
-        public static final double kMaxMotorVoltage = 11; // 
+    public static final double kPulleyDiameterMeter = Units.inchesToMeters(1.504);
+    public static final double kElevatorMotorGearRatio = 1 / 15;
+    public static final double kBeltPullMeters = kElevatorMotorGearRatio * Math.PI * kPulleyDiameterMeter;
+    public static final double kElevatorEncoderRot2Meters = 2 * kBeltPullMeters;
+    public static final double kMaxMotorVoltage = 11; // 
+
+
+    public static final SparkMaxConfig kElevatorMotorConfig = new SparkMaxConfig();
+
+
         public static final boolean kClampBatteryVoltageToMaxVoltage = true;
         public static final double kGravityOpposition = 0.25;
-        public static final double kTimeBetweenCommands =0.02;
-
+        public static final double kTimeBetweenCommands = 0.02;
+        public static final double kElevatorHeightLimit = 0.0;
         
-        // FEEDFORWARD CONSTANTS
-        public static final double kS = 0.0;
-        public static final double kG = 0.035000;
-        public static final double kV = 0.424000;
-        public static final double kA = 0.0;
 
-        public static final double kMaxVelocity = 1.3;
-        public static final double kMaxAcceleration = 2.2;
-
-        // PID CONSTANTS
-        public static final double kP = 0.0;
-        public static final double kI = 0.0;
-        public static final double kD = 0.0;
 
         // LEVELS
         public static final double kFirstLevel = Units.inchesToMeters(0.05);

@@ -61,7 +61,7 @@ public class ElevatorCommand extends Command{
     @Override
     public boolean isFinished() {
         // stop func if position goal is greater then physical limits or if it reaches its goal.
-        if(subsystem.getEncoderPosition() == position || position > ElevatorConstants.kElevatorHeightLimit) {
+        if(subsystem.getEncoderPosition() == position) {
             subsystem.setMotorSpeed(0);
             return true;
         }
