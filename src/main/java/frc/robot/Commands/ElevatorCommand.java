@@ -53,7 +53,7 @@ public class ElevatorCommand extends Command{
     }
     @Override
     public boolean isFinished() {
-        if(subsystem.getEncoderPosition() == Position) {
+        if(subsystem.getEncoderPosition() == position) {
             subsystem.setMotorSpeed(0);
             return true;
         }
